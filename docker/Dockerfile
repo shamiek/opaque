@@ -27,6 +27,10 @@ RUN openssl ecparam -name prime256v1 -genkey -noout -out private_key.pem
 RUN git clone https://github.com/ucbrise/opaque.git
 WORKDIR /home/opaque/opaque
 
+RUN source opaqueenv && \
+    source /opt/openenclave/share/openenclave/openenclaverc && \
+    export MODE=SIMULATE
+
 ENV SPARKSGX_DATA_DIR="/home/opaque/opaque/data"
 ENV PRIVATE_KEY_PATH="/home/opaque/private_key.pem"
 
